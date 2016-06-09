@@ -2,9 +2,9 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-group 'cool.graph.cuid-java'
+group 'cool.graph'
 archivesBaseName = 'cuid-java'
-version '0.1.0-SNAPSHOT'
+version '0.1.0'
 
 repositories {
     mavenCentral()
@@ -14,13 +14,18 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
 
 artifacts {
-    archives sourcesJar
+    archives javadocJar, sourcesJar
 }
 
 signing {
@@ -44,27 +49,27 @@ uploadArchives {
                 name 'cuid-java'
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                description 'A application used as an example on how to set up pushing  its components to the Central Repository.'
-                url 'http://www.example.com/example-application'
+                description 'Collision-resistant ids for Java.'
+                url 'https://github.com/graphcool/cuid-java'
 
                 scm {
-                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
-                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-                    url 'http://foo.googlecode.com/svn/trunk/'
+                    connection 'scm:git:git@github.com:graphcool/cuid-java.git'
+                    developerConnection 'scm:git:git@github.com:graphcool/cuid-java.git'
+                    url 'git@github.com:graphcool/cuid-java.git'
                 }
 
                 licenses {
                     license {
-                        name 'The Apache License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name 'MIT License'
+                        url 'http://www.opensource.org/licenses/mit-license.php'
                     }
                 }
 
                 developers {
                     developer {
-                        id 'manfred'
-                        name 'Manfred Moser'
-                        email 'manfred@sonatype.com'
+                        id 'marktani'
+                        name 'Nilan Marktanner'
+                        email 'nilan.marktanner@gmail.com'
                     }
                 }
             }

@@ -1,6 +1,9 @@
 import java.lang.management.ManagementFactory;
 import java.util.Date;
 
+/**
+ * Generates collision-resistant unique ids.
+ */
 public class Cuid {
     private static final int BASE = 36;
     private static final int BLOCK_SIZE = 4;
@@ -58,11 +61,16 @@ public class Cuid {
         return counter++;
     }
 
+    /**
+     * Generates collision-resistant unique ids.
+     *
+     * @return a collision-resistant unique id
+     */
     public static String createCuid() {
         String timestamp = Long.toString(new Date().getTime(), BASE);
         String counter = pad(Integer.toString(safeCounter(), BASE), BLOCK_SIZE);
         String random = getRandomBlock() + getRandomBlock();
 
-        return String.join("", LETTER, timestamp, counter, FINGERPRINT , random);
+        return LETTER + timestamp + counter + FINGERPRINT + random;
     }
 }
