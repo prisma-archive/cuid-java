@@ -1,3 +1,4 @@
+import cool.graph.cuid.Cuid;
 import org.junit.Test;
 
 import java.util.HashMap;

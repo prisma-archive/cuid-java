@@ -1,3 +1,5 @@
+package cool.graph.cuid;
+
 import java.lang.management.ManagementFactory;
 import java.util.Date;
 
