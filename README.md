@@ -171,3 +171,9 @@ The cuid specification should not be considered an API contract. Code that relie
 Main project created by Eric Elliott, Author, ["Programming JavaScript Applications (O'Reilly)"](http://ericleads.com/javascript-applications/)
 
 Java port maintained by [Nilan Marktanner](https://github.com/marktani)
+
+## Help & Community [![Slack Status](https://slack.graph.cool/badge.svg)](https://slack.graph.cool)
+
+Join our [Slack community](http://slack.graph.cool/) if you run into issues or have questions. We love talking to you!
+
+![](http://i.imgur.com/5RHR6Ku.png)
