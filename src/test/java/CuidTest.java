@@ -13,13 +13,29 @@ public class CuidTest {
         assertEquals(Cuid.createCuid().charAt(0), 'c');
     }
 
+    @Test
+    public void testForCollisions() {
+        assertEquals(hasNoCollisions(), true);
+    }
+
+    @Test
+    public void shouldValidateACuid() throws Exception {
+        final String cuid = Cuid.createCuid();
+        assertTrue(Cuid.validate(cuid));
+    }
+
+    @Test
+    public void shouldNotAcceptNullCuidWhenValidate() throws Exception {
+        assertFalse(Cuid.validate(null));
+    }
+
     private boolean hasNoCollisions() {
         int iterations = 4200000;
         Map<String, String> cuids = new HashMap<>();
 
         for (int i = 0; i < iterations; ++i) {
             String cuid = Cuid.createCuid();
-            if (cuids.containsKey(cuid)) {
+            if (cuids.containsKey(cuid) && Cuid.validate(cuid)) {
                 return false;
             } else {
                 cuids.put(cuid, cuid);
@@ -27,10 +43,5 @@ public class CuidTest {
         }
 
         return true;
-    }
-
-    @Test
-    public void testForCollisions() {
-        assertEquals(hasNoCollisions(), true);
     }
 }

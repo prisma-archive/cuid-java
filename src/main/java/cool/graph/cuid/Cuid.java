@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Cuid {
     private static final int BASE = 36;
+    private static final int LENGTH = 25;
     private static final int BLOCK_SIZE = 4;
     private static final int DISCRETE_VALUES = (int) Math.pow(BASE, BLOCK_SIZE);
     private static final String LETTER = "c";
@@ -74,5 +75,15 @@ public class Cuid {
         String random = getRandomBlock() + getRandomBlock();
 
         return LETTER + timestamp + counter + FINGERPRINT + random;
+    }
+
+    /**
+     *  Validates a cuid
+     *
+     * @param cuid
+     * @return true if it's a valid cuid or false if it's not
+     */
+    public static boolean validate(String cuid) {
+        return (null != cuid) && (cuid.length() == LENGTH && cuid.substring(0, 1).equals(LETTER));
     }
 }
