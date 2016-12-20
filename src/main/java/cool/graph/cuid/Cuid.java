@@ -2,6 +2,7 @@ package cool.graph.cuid;
 
 import java.lang.management.ManagementFactory;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * Generates collision-resistant unique ids.
@@ -14,6 +15,8 @@ public class Cuid {
     private static final String LETTER = "c";
 
     private static final String FINGERPRINT;
+
+    private static Pattern PATTERN = Pattern.compile("[^A-Za-z0-9]");
 
     static {
         FINGERPRINT = getFingerprint();
@@ -84,6 +87,10 @@ public class Cuid {
      * @return true if it's a valid cuid or false if it's not
      */
     public static boolean validate(String cuid) {
-        return (null != cuid) && (cuid.length() == LENGTH && cuid.substring(0, 1).equals(LETTER));
+        return (null != cuid) && (cuid.length() == LENGTH && cuid.substring(0, 1).equals(LETTER)) && hasNotSpecialChars(cuid);
+    }
+
+    private static boolean hasNotSpecialChars(String cuid) {
+        return !PATTERN.matcher(cuid).find();
     }
 }
